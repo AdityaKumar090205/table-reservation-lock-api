@@ -1,30 +1,58 @@
-# table-reservation-lock-api
-A lightweight Node.js API to lock, unlock, and check table reservations using in-memory storage to prevent double bookings.
-# 🪑 Table Reservation Lock API
+# Table Reservation Lock API
 
-A lightweight Node.js/Express API that handles **temporary table reservations** using an in-memory locking mechanism — perfect for preventing double-bookings in real-time environments.
+This project provides a simple in-memory locking mechanism for table reservations using Node.js and Express.
 
-## 🚀 Features
+## Features
 
-- 🔒 Lock a table for a specific user for a specified duration
-- 🔓 Unlock a table (only by the user who locked it)
-- 📡 Check real-time table lock status
-- 🧠 Uses simple in-memory storage — no database setup needed
+- Lock a table temporarily for a user
+- Unlock a table only by the same user
+- Check lock status of a table
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack
+- Node.js
+- Express.js
 
-- **Node.js**
-- **Express.js**
-- In-memory JavaScript object (for lock storage)
+## API Endpoints
 
----
+### 1. Lock a Table
 
-## 📦 Installation & Run
+**POST** `/api/tables/lock`
+
+```json
+{
+  "tableId": "table-123",
+  "userId": "user-abc",
+  "duration": 600
+}
+```
+
+### 2. Unlock a Table
+
+**POST** `/api/tables/unlock`
+
+```json
+{
+  "tableId": "table-123",
+  "userId": "user-abc"
+}
+```
+
+### 3. Check Table Lock Status
+
+**GET** `/api/tables/table-123/status`
+
+**Response**
+
+```json
+{
+  "isLocked": true
+}
+```
+
+## Run the Project
 
 ```bash
-git clone https://github.com/your-username/table-reservation-lock-api.git
-cd table-reservation-lock-api
 npm install
 npm start
+```
